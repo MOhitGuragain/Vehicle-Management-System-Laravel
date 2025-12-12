@@ -20,43 +20,50 @@
     <table class="w-full border-collapse bg-white shadow-md rounded">
         <thead>
             <tr class="bg-gray-100">
+                <th class="border p-3">Image</th>
                 <th class="border p-3">Name</th>
                 <th class="border p-3">Type</th>
                 <th class="border p-3">Plate</th>
                 <th class="border p-3">Price/Day</th>
                 <th class="border p-3">Status</th>
                 <th class="border p-3">Action</th>
-                <th class="border p-3">Image</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach($vehicles as $vehicle)
             <tr>
+                <!-- IMAGE -->
+                <td class="border p-3">
+                    @if($vehicle->image)
+                        <img src="{{ asset('storage/' . $vehicle->image) }}" 
+                             class="w-16 h-16 object-cover rounded shadow">
+                    @else
+                        <span class="text-gray-500 text-sm">No image</span>
+                    @endif
+                </td>
+
                 <td class="border p-3">{{ $vehicle->vehicle_name }}</td>
                 <td class="border p-3">{{ $vehicle->vehicle_type }}</td>
                 <td class="border p-3">{{ $vehicle->plate_number }}</td>
                 <td class="border p-3">${{ $vehicle->rent_price_per_day }}</td>
+
                 <td class="border p-3 capitalize">{{ $vehicle->status }}</td>
+
                 <td class="border p-3">
-                    <a href="{{ route('vehicles.edit', $vehicle->id) }}" class="text-blue-600">Edit</a>
+                    <a href="{{ route('vehicles.edit', $vehicle->id) }}" 
+                       class="text-blue-600 hover:underline">Edit</a>
 
                     <form action="{{ route('vehicles.destroy', $vehicle->id) }}"
                           method="POST" class="inline-block ml-2">
                         @csrf
                         @method('DELETE')
-                        <button class="text-red-600" onclick="return confirm('Delete this?')">
+                        <button class="text-red-600 hover:underline" 
+                                onclick="return confirm('Delete this?')">
                             Delete
                         </button>
                     </form>
                 </td>
-                <td>
-    @if($vehicle->image)
-        <img src="{{ asset('storage/' . $vehicle->image) }}" class="w-16 h-16 object-cover rounded">
-    @else
-        <span class="text-gray-500 text-sm">No image</span>
-    @endif
-</td>
             </tr>
             @endforeach
         </tbody>

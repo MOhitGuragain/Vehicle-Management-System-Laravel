@@ -119,7 +119,7 @@
                 <span class="ml-auto bg-green-500 text-xs px-2 py-1 rounded-full">320</span>
             </a>
 
-            <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
+            <a href="{{ route('rentals.create', ['vehicle' => 1]) }}" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
                 <i class="fas fa-calendar-alt w-5 mr-3"></i>
                 Bookings
                 <span class="ml-auto bg-yellow-500 text-xs px-2 py-1 rounded-full">42</span>
