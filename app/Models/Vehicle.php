@@ -26,5 +26,12 @@ class Vehicle extends Model
     {
         return $this->hasMany(MaintenanceRecord::class);
     }
+    public function available()
+    {
+        $vehicles = Vehicle::where('status', 'available')
+        ->latest()
+        ->paginate(10);
+        return view('rentals.available', compact('vehicles'));  
+    }
 }
 

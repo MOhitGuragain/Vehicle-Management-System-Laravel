@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\RentalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,19 +25,20 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 Route::resource('vehicles', VehicleController::class)->middleware(['auth',]);
 
-//Route for rental management can be added here
-use App\Http\Controllers\RentalController;
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/rentals', [RentalController::class, 'index'])->name('rentals.index');
+    Route::get('/rent', [VehicleController::class, 'available'])
+        ->name('rentals.available');
+
+        
+    Route::get('/rentals', [RentalController::class, 'index'])
+        ->name('rentals.index');
 
     Route::get('/rentals/create/{vehicle}', [RentalController::class, 'create'])
         ->name('rentals.create');
 
-    Route::post('/rentals', [RentalController::class, 'store'])->name('rentals.store');
-
+    Route::post('/rentals', [RentalController::class, 'store'])
+        ->name('rentals.store');
 });
-
-
 require __DIR__.'/auth.php';

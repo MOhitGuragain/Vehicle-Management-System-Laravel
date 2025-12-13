@@ -10,12 +10,6 @@ use Carbon\Carbon;
 
 class RentalController extends Controller
 {
-     public function index()
-    {
-        $rentals = Rental::with('vehicle', 'user')->latest()->paginate(10);
-
-        return view('rentals.index', compact('rentals'));
-    }
     public function create(Vehicle $vehicle)
     {
         if ($vehicle->status !== 'available') {
@@ -58,5 +52,10 @@ class RentalController extends Controller
         $vehicle->update(['status' => 'rented']);
 
         return redirect('/dashboard')->with('success', 'Vehicle booked successfully!');
+    }
+    public function index()
+    {
+        $rentals = Rental::with(['user','vehicle'])->latest()->paginate(10);
+        return view('rentals.index', compact('rentals'));
     }
 }

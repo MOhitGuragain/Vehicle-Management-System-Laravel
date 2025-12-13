@@ -81,4 +81,12 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')
                          ->with('success', 'Vehicle deleted successfully!');
     }
+
+    public function available()
+    {
+        $vehicles = Vehicle::where('status', 'available')
+        ->latest()
+        ->paginate(10);
+        return view('rentals.available', compact('vehicles'));  
+    }
 }

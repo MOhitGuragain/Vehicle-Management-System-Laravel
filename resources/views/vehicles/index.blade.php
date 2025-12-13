@@ -63,12 +63,17 @@
                             Delete
                         </button>
                     </form>
+                        @if ($vehicle->status === 'available')
+                <a href="{{ route('rentals.create', $vehicle) }}"
+                               class="bg-green-400 text-white px-4 py-1 rounded hover:bg-green-700">
+                                Rent
+                            </a>
+                        @endif
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
     <div class="mt-4">
         {{ $vehicles->links() }}
     </div>

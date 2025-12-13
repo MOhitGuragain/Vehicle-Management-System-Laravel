@@ -32,7 +32,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500">Active Rentals</p>
-                            <h2 class="text-3xl font-bold text-gray-900 mt-2">42</h2>
+                            <h2 class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Rental::count() }}</h2>
                         </div>
                         <div class="bg-green-100 p-3 rounded-xl">
                             <i class="fas fa-key text-green-600 text-2xl"></i>
@@ -51,7 +51,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500">Total Vehicles</p>
-                            <h2 class="text-3xl font-bold text-gray-900 mt-2">128</h2>
+                            <h2 class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Vehicle::count() }}</h2>
                         </div>
                         <div class="bg-blue-100 p-3 rounded-xl">
                             <i class="fas fa-car text-blue-600 text-2xl"></i>
@@ -121,7 +121,7 @@
                         <div>
                             <div class="flex justify-between text-sm text-gray-600 mb-1">
                                 <span>Available</span>
-                                <span>48%</span>
+                                <span>{{ \App\Models\Vehicle::where('status', 'available')->count() }}</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
                                 <div class="bg-green-500 h-2 rounded-full" style="width: 48%"></div>
@@ -131,7 +131,7 @@
                         <div>
                             <div class="flex justify-between text-sm text-gray-600 mb-1">
                                 <span>Rented</span>
-                                <span>32%</span>
+                                <span>{{ \App\Models\Vehicle::where('status', 'rented')->count() }}</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
                                 <div class="bg-blue-500 h-2 rounded-full" style="width: 32%"></div>
@@ -168,11 +168,10 @@
                         <h3 class="text-lg font-semibold text-gray-800">Recent Rentals</h3>
                         <p class="text-sm text-gray-500 mt-1">Latest 10 rental transactions</p>
                     </div>
-                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    <a href="{{ route('rentals.index') }}" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                         View All <i class="fas fa-chevron-right ml-1 text-xs"></i>
                     </a>
                 </div>
-
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
