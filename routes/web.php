@@ -41,4 +41,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/rentals', [RentalController::class, 'store'])
         ->name('rentals.store');
 });
+//Booking Confirmation Route
+Route::get('/rentals/confirmation/{rental}', [RentalController::class, 'confirmation'])
+    ->name('rentals.confirmation')
+    ->middleware('auth');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/rentals', [RentalController::class, 'adminIndex'])->name('admin.rentals');
+    Route::post('/admin/rentals/{rental}/approve', [RentalController::class, 'approve'])->name('rentals.approve');
+    Route::post('/admin/rentals/{rental}/reject', [RentalController::class, 'reject'])->name('rentals.reject');
+});
+
 require __DIR__.'/auth.php';

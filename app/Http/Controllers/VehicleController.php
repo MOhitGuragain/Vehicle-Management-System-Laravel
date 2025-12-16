@@ -18,7 +18,9 @@ class VehicleController extends Controller
     // Show create form
     public function create()
     {
-        return view('vehicles.create');
+        $vehicles = Vehicle::latest()->paginate(10);
+return view('vehicles.create', compact('vehicles')  );
+
     }
 
     // Store in DB

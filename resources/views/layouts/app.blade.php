@@ -132,14 +132,18 @@
 
             <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
                 <i class="fas fa-chart-bar w-5 mr-3"></i>
-                Reports
+                Maintenance
+            </a>
+
+            <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
+                <i class="fas fa-inbox w-5 mr-3"></i>
+                Messages
             </a>
 
             <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
                 <i class="fas fa-cog w-5 mr-3"></i>
                 Settings
             </a>
-
         </nav>
     </aside>
 
