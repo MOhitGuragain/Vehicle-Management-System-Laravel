@@ -7,19 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     protected $fillable = [
-        'vehicle_name',
-        'vehicle_type',
-        'brand',
-        'model',
-        'plate_number',
-        'fuel_type',
-        'seat_capacity',
-        'rent_price_per_day',
-        'status',
-        'image'
+        'vehicle_name', 'vehicle_type', 'brand', 'model',
+        'plate_number', 'fuel_type', 'seat_capacity',
+        'rent_price_per_day', 'status',
     ];
 
-    // Relations
     public function images()
     {
         return $this->hasMany(VehicleImage::class);
@@ -32,6 +24,14 @@ class Vehicle extends Model
 
     public function maintenanceRecords()
     {
-        return $this->hasMany(Maintenance::class);
+        return $this->hasMany(MaintenanceRecord::class);
+    }
+    public function available()
+    {
+        $vehicles = Vehicle::where('status', 'available')
+        ->latest()
+        ->paginate(10);
+        return view('rentals.available', compact('vehicles'));  
     }
 }
+
