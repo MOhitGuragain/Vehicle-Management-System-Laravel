@@ -6,25 +6,30 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-       Schema::create('maintenance_records', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('vehicle_id')->constrained()->cascadeOnDelete();
-    $table->text('description');
-    $table->decimal('cost', 10, 2)->nullable();
-    $table->date('maintenance_date');
-    $table->timestamps();
-});
+        Schema::create('maintenance_records', function (Blueprint $table) {
+            $table->id();
 
+            $table->foreignId('vehicle_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->text('description');
+
+            $table->decimal('cost', 10, 2)->nullable();
+
+            $table->date('maintenance_date');
+
+            $table->date('next_maintenance_date')->nullable();
+
+            $table->enum('status', ['pending', 'completed'])
+                ->default('pending');
+
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('maintenance_records');

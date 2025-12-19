@@ -110,7 +110,7 @@
                class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
                 <i class="fas fa-car w-5 mr-3"></i>
                 Vehicles
-                <span class="ml-auto bg-blue-500 text-xs px-2 py-1 rounded-full">128</span>
+                <span class="ml-auto bg-blue-500 text-xs px-2 py-1 rounded-full">{{ \App\Models\Vehicle::where('status', 'available')->count() }}</span>
             </a>
 
             <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
@@ -122,7 +122,7 @@
             <a href="{{ route('rentals.index') }}" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
                 <i class="fas fa-calendar-alt w-5 mr-3"></i>
                 Rentals
-                <span class="ml-auto bg-yellow-500 text-xs px-2 py-1 rounded-full">42</span>
+                <span class="ml-auto bg-yellow-500 text-xs px-2 py-1 rounded-full">{{ \App\Models\Rental::where('status', 'approved')->count() }}</span>
             </a>
 
             <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
@@ -130,7 +130,7 @@
                 Payments
             </a>
 
-            <a href="#" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
+            <a href="{{ route('maintenance.index') }}" class="flex items-center px-4 py-3 rounded-xl hover:bg-gray-700 text-gray-300 hover:text-white transition">
                 <i class="fas fa-chart-bar w-5 mr-3"></i>
                 Maintenance
             </a>
@@ -144,6 +144,13 @@
                 <i class="fas fa-cog w-5 mr-3"></i>
                 Settings
             </a>
+            @if(auth()->user()->hasRole('admin'))
+    <a href="{{ route('admin.dashboard') }}"
+       class="block px-4 py-2 hover:bg-gray-100">
+        Admin Dashboard
+    </a>
+@endif
+
         </nav>
     </aside>
 

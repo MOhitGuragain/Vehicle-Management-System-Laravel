@@ -76,6 +76,12 @@
                class="px-6 py-2 border rounded text-gray-700 hover:bg-gray-100">
                 Rent Another Vehicle
             </a>
+
+            <a href="{{ route('payment.create', $rental) }}"
+   class="bg-blue-600 text-white px-4 py-2 rounded">
+    Proceed to Payment
+</a>
+
         </div>
 
     </div>
