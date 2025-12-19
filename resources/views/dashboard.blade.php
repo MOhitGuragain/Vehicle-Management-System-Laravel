@@ -1,409 +1,439 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex min-h-screen">
-    <!-- Main Content -->
-    <div class="flex-1">
-        <!-- Main Content Area -->
-        <main class="p-4 md:p-6">
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <!-- Total Revenue -->
-                <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl p-6 shadow-lg">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-blue-100">Total Revenue</p>
-                            <h2 class="text-3xl font-bold mt-2">$24,580</h2>
-                        </div>
-                        <div class="bg-white/20 p-3 rounded-xl">
-                            <i class="fas fa-dollar-sign text-2xl"></i>
-                        </div>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4 md:p-8">
+    
+    <!-- Welcome Header -->
+    <div class="mb-10 text-center md:text-left">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                        <i class="fas fa-user-circle text-white text-3xl"></i>
                     </div>
-                    <div class="mt-4 flex items-center">
-                        <span class="text-green-300 text-sm flex items-center">
-                            <i class="fas fa-arrow-up mr-1"></i> 18.2%
-                        </span>
-                        <span class="text-blue-200 text-sm ml-2">This month</span>
-                    </div>
-                </div>
-
-                <!-- Active Rentals -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-gray-500">Active Rentals</p>
-                            <h2 class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Rental::count() }}</h2>
-                        </div>
-                        <div class="bg-green-100 p-3 rounded-xl">
-                            <i class="fas fa-key text-green-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <span class="text-green-500 text-sm flex items-center">
-                            <i class="fas fa-arrow-up mr-1"></i> 5.2%
-                        </span>
-                        <span class="text-gray-500 text-sm ml-2">This week</span>
-                    </div>
-                </div>
-
-                <!-- Total Vehicles -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-gray-500">Total Vehicles</p>
-                            <h2 class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Vehicle::count() }}</h2>
-                        </div>
-                        <div class="bg-blue-100 p-3 rounded-xl">
-                            <i class="fas fa-car text-blue-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <span class="text-green-500 text-sm flex items-center">
-                            <i class="fas fa-plus mr-1"></i> 8 New
-                        </span>
-                        <span class="text-gray-500 text-sm ml-2">This month</span>
-                    </div>
-                </div>
-
-                <!-- Registered Users -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-gray-500">Customers</p>
-                            <h2 class="text-3xl font-bold text-gray-900 mt-2">320</h2>
-                        </div>
-                        <div class="bg-purple-100 p-3 rounded-xl">
-                            <i class="fas fa-users text-purple-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <span class="text-green-500 text-sm flex items-center">
-                            <i class="fas fa-arrow-up mr-1"></i> 12.5%
-                        </span>
-                        <span class="text-gray-500 text-sm ml-2">This month</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Charts and Tables Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <!-- Revenue Chart -->
-                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-semibold text-gray-800">Revenue Overview</h3>
-                        <select class="text-sm border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option>This Week</option>
-                            <option>This Month</option>
-                            <option>This Year</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Simple Chart (replace with real chart library) -->
-                    <div class="h-64 flex items-end space-x-2">
-                        <div class="flex-1 bg-blue-100 rounded-t-lg" style="height: 80%"></div>
-                        <div class="flex-1 bg-blue-200 rounded-t-lg" style="height: 60%"></div>
-                        <div class="flex-1 bg-blue-300 rounded-t-lg" style="height: 90%"></div>
-                        <div class="flex-1 bg-blue-400 rounded-t-lg" style="height: 70%"></div>
-                        <div class="flex-1 bg-blue-500 rounded-t-lg" style="height: 85%"></div>
-                        <div class="flex-1 bg-blue-600 rounded-t-lg" style="height: 75%"></div>
-                        <div class="flex-1 bg-blue-700 rounded-t-lg" style="height: 95%"></div>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-500 mt-2">
-                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
-                    </div>
-                </div>
-
-                <!-- Vehicle Status -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-6">Vehicle Status</h3>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                <span>Available</span>
-                                <span>{{ \App\Models\Vehicle::where('status', 'available')->count() }}</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-green-500 h-2 rounded-full" style="width: 48%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                <span>Rented</span>
-                                <span>{{ \App\Models\Vehicle::where('status', 'rented')->count() }}</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-blue-500 h-2 rounded-full" style="width: 32%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                <span>Maintenance</span>
-                                <span>12%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 12%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                <span>Reserved</span>
-                                <span>8%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-500 h-2 rounded-full" style="width: 8%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Rentals Table -->
-            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-800">Recent Rentals</h3>
-                        <p class="text-sm text-gray-500 mt-1">Latest 10 rental transactions</p>
-                    </div>
-                    <a href="{{ route('rentals.index') }}" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                        View All <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                    </a>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="bg-gray-50 border-b">
-                                <th class="text-left py-4 px-6">
-                                    <div class="flex items-center">
-                                        <span class="text-sm font-semibold text-gray-700">Customer</span>
-                                        <i class="fas fa-sort ml-1 text-gray-400 text-xs"></i>
-                                    </div>
-                                </th>
-                                <th class="text-left py-4 px-6">
-                                    <div class="flex items-center">
-                                        <span class="text-sm font-semibold text-gray-700">Vehicle</span>
-                                        <i class="fas fa-sort ml-1 text-gray-400 text-xs"></i>
-                                    </div>
-                                </th>
-                                <th class="text-left py-4 px-6">
-                                    <div class="flex items-center">
-                                        <span class="text-sm font-semibold text-gray-700">Rent Date</span>
-                                        <i class="fas fa-sort ml-1 text-gray-400 text-xs"></i>
-                                    </div>
-                                </th>
-                                <th class="text-left py-4 px-6">
-                                    <div class="flex items-center">
-                                        <span class="text-sm font-semibold text-gray-700">Return Date</span>
-                                    </div>
-                                </th>
-                                <th class="text-left py-4 px-6">
-                                    <div class="flex items-center">
-                                        <span class="text-sm font-semibold text-gray-700">Amount</span>
-                                        <i class="fas fa-sort ml-1 text-gray-400 text-xs"></i>
-                                    </div>
-                                </th>
-                                <th class="text-left py-4 px-6">
-                                    <span class="text-sm font-semibold text-gray-700">Status</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="text-blue-600 font-medium text-sm">M</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-medium text-gray-800 block">Madan Guragain</span>
-                                            <span class="text-xs text-gray-500">madan@example.com</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-car text-gray-400 mr-2"></i>
-                                        <span class="text-gray-700">Toyota Corolla</span>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="text-gray-700">Dec 10, 2025</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="text-gray-700">Dec 13, 2025</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="font-medium text-gray-800">$245</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium flex items-center w-fit">
-                                        <i class="fas fa-circle text-xs mr-1"></i>
-                                        Active
-                                    </span>
-                                </td>
-                            </tr>
-                            
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="text-purple-600 font-medium text-sm">J</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-medium text-gray-800 block">John Doe</span>
-                                            <span class="text-xs text-gray-500">john@example.com</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-car text-gray-400 mr-2"></i>
-                                        <span class="text-gray-700">Honda City</span>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="text-gray-700">Dec 8, 2025</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="text-gray-700">Dec 9, 2025</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="font-medium text-gray-800">$180</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium flex items-center w-fit">
-                                        <i class="fas fa-check-circle text-xs mr-1"></i>
-                                        Completed
-                                    </span>
-                                </td>
-                            </tr>
-                            
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="text-pink-600 font-medium text-sm">S</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-medium text-gray-800 block">Sita Kumari</span>
-                                            <span class="text-xs text-gray-500">sita@example.com</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-car text-gray-400 mr-2"></i>
-                                        <span class="text-gray-700">Hyundai i20</span>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="text-gray-700">Dec 11, 2025</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="text-gray-500">Pending</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="font-medium text-gray-800">$210</span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium flex items-center w-fit">
-                                        <i class="fas fa-clock text-xs mr-1"></i>
-                                        Pending
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Table Footer -->
-                <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
-                    <div class="text-sm text-gray-600">
-                        Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">42</span> rentals
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-100">
-                            <i class="fas fa-chevron-left text-gray-600"></i>
-                        </button>
-                        <button class="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded-lg font-medium">
-                            1
-                        </button>
-                        <button class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-100">
-                            2
-                        </button>
-                        <button class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-100">
-                            <i class="fas fa-chevron-right text-gray-600"></i>
-                        </button>
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">
+                            Welcome back, <span class="text-blue-600">{{ auth()->user()->name }}</span> 👋
+                        </h1>
+                        <p class="text-gray-600 mt-2 flex items-center">
+                            <i class="fas fa-calendar-day mr-2 text-blue-500"></i>
+                            {{ now()->format('l, F j, Y') }}
+                        </p>
                     </div>
                 </div>
             </div>
-        </main>
+            
+            <!-- Quick Stats -->
+            <div class="mt-6 md:mt-0">
+                <div class="inline-flex items-center px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-star text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Member Since</p>
+                        <p class="font-medium text-gray-800">{{ auth()->user()->created_at->format('M Y') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <!-- Active Rentals -->
+        <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl p-6 shadow-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-blue-100 text-sm">Active Rentals</p>
+                    <h2 class="text-3xl font-bold mt-2">0</h2>
+                </div>
+                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-key text-white text-xl"></i>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white/20">
+                <p class="text-sm text-blue-100">Currently no active rentals</p>
+            </div>
+        </div>
+        
+        <!-- Upcoming Bookings -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm">Upcoming Bookings</p>
+                    <h2 class="text-3xl font-bold text-gray-900 mt-2">0</h2>
+                </div>
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-calendar-alt text-blue-600 text-xl"></i>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-100">
+                <p class="text-xs text-gray-500">No upcoming bookings</p>
+            </div>
+        </div>
+        
+        <!-- Total Rentals -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm">Total Rentals</p>
+                    <h2 class="text-3xl font-bold text-gray-900 mt-2">0</h2>
+                </div>
+                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-history text-green-600 text-xl"></i>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-100">
+                <p class="text-xs text-gray-500">Start your first rental</p>
+            </div>
+        </div>
+        
+        <!-- Loyalty Points -->
+        <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-2xl p-6 shadow-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-purple-100 text-sm">Loyalty Points</p>
+                    <h2 class="text-3xl font-bold mt-2">100</h2>
+                </div>
+                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-gem text-white text-xl"></i>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white/20">
+                <p class="text-sm text-purple-100">Earn rewards with each rental</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mb-10">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900">Quick Actions</h2>
+            <div class="text-sm text-gray-500">
+                <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                Instant access
+            </div>
+        </div>
+        
+        <!-- Main Menu Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Browse Vehicles -->
+            <a href="{{ route('vehicles.index') }}"
+               class="group bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-blue-100 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-150 transition-transform"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-car text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                        Browse Vehicles
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Explore our wide selection of available vehicles
+                    </p>
+                    
+                    <div class="flex items-center text-blue-600 font-medium">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Book a Vehicle -->
+            <a href="{{ route('rentals.index') }}"
+               class="group bg-gradient-to-br from-white to-green-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-green-100 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-green-100 to-green-200 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-150 transition-transform"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-calendar-check text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                        Book a Vehicle
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Rent your preferred vehicle in just a few clicks
+                    </p>
+                    
+                    <div class="flex items-center text-green-600 font-medium">
+                        <span>Start Booking</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- My Rentals -->
+            <a href="{{ route('rentals.index') }}"
+               class="group bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-purple-100 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-150 transition-transform"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-clock-rotate-left text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        My Rentals
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Track your booking history and current rentals
+                    </p>
+                    
+                    <div class="flex items-center text-purple-600 font-medium">
+                        <span>View History</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- My Profile -->
+            <a href="{{ route('profile.show') }}"
+               class="group bg-gradient-to-br from-white to-indigo-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-indigo-100 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-150 transition-transform"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-user-cog text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                        My Profile
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Manage your account settings and preferences
+                    </p>
+                    
+                    <div class="flex items-center text-indigo-600 font-medium">
+                        <span>Update Profile</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Additional Features -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+        <!-- Help & Support -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4">
+                    <i class="fas fa-headset text-orange-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800">Need Help?</h3>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">
+                Our support team is available 24/7 to assist you with any questions.
+            </p>
+            <button class="w-full px-4 py-2.5 bg-orange-100 text-orange-700 rounded-lg font-medium hover:bg-orange-200 transition">
+                <i class="fas fa-comments mr-2"></i>Contact Support
+            </button>
+        </div>
+        
+        <!-- Promo Banner -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-6 shadow-lg lg:col-span-2">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">🎉 Special Offer!</h3>
+                    <p class="text-blue-100">Get 15% off your first rental. Limited time offer.</p>
+                </div>
+                <button class="px-6 py-3 bg-white text-blue-600 rounded-xl font-bold hover:bg-blue-50 transition">
+                    Claim Offer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-semibold text-gray-800">Quick Links</h3>
+            <div class="text-sm text-gray-500">
+                <i class="fas fa-external-link-alt mr-1"></i>
+                Navigation
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="#" class="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-blue-50 transition group">
+                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-file-invoice text-blue-600"></i>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-800 group-hover:text-blue-600">Rental Policy</p>
+                    <p class="text-xs text-gray-500">Terms & conditions</p>
+                </div>
+            </a>
+            
+            <a href="#" class="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-green-50 transition group">
+                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-question-circle text-green-600"></i>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-800 group-hover:text-green-600">FAQs</p>
+                    <p class="text-xs text-gray-500">Common questions</p>
+                </div>
+            </a>
+            
+            <a href="#" class="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-purple-50 transition group">
+                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-map-marker-alt text-purple-600"></i>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-800 group-hover:text-purple-600">Locations</p>
+                    <p class="text-xs text-gray-500">Pickup points</p>
+                </div>
+            </a>
+            
+            <a href="#" class="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-red-50 transition group">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                    <i class="fas fa-shield-alt text-red-600"></i>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-800 group-hover:text-red-600">Safety</p>
+                    <p class="text-xs text-gray-500">Safety guidelines</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+ <div class="mt-12 text-center">
+    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+        <i class="fas fa-car-side text-blue-600 text-3xl mb-4"></i>
+
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">
+            Ready to start your first rental?
+        </h3>
+
+        <p class="text-gray-600 mb-4">
+            Browse vehicles and make your first booking in minutes.
+        </p>
+
+        <a href="{{ route('vehicles.index') }}"
+           class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+            Browse Vehicles
+            <i class="fas fa-arrow-right ml-2"></i>
+        </a>
     </div>
 </div>
 
-<!-- JavaScript for Mobile Sidebar -->
+
 <script>
-    // Mobile sidebar toggle
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.querySelector('.hidden.md\\:flex');
-    
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
-            sidebar.classList.toggle('fixed');
-            sidebar.classList.toggle('inset-0');
-            sidebar.classList.toggle('z-40');
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click animations to cards
+    const menuCards = document.querySelectorAll('[class*="hover:-translate-y-2"]');
+    menuCards.forEach(card => {
+        card.addEventListener('mousedown', function() {
+            this.style.transform = 'translateY(0) scale(0.98)';
         });
-    }
-    
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth < 768 && sidebar && !sidebar.contains(e.target) && e.target !== sidebarToggle) {
-            sidebar.classList.add('hidden');
-            sidebar.classList.remove('fixed', 'inset-0', 'z-40');
-        }
+        
+        card.addEventListener('mouseup', function() {
+            this.style.transform = 'translateY(-2px) scale(1)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
     });
+    
+    // Add greeting based on time of day
+    const hour = new Date().getHours();
+    const greetingElement = document.querySelector('h1 span');
+    let greeting = '';
+    
+    if (hour < 12) greeting = 'Good morning';
+    else if (hour < 18) greeting = 'Good afternoon';
+    else greeting = 'Good evening';
+    
+    // Update greeting
+    const currentGreeting = greetingElement.textContent;
+    greetingElement.textContent = greeting + ', ' + currentGreeting.split(', ')[1];
+    
+    // Add floating animation to icons
+    const icons = document.querySelectorAll('.fa-car, .fa-calendar-check, .fa-clock-rotate-left, .fa-user-cog');
+    icons.forEach((icon, index) => {
+        icon.style.animation = `float 3s ease-in-out ${index * 0.5}s infinite`;
+    });
+});
 </script>
+
+<style>
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #2563eb, #7c3aed);
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Gradient background animation */
+.bg-gradient-to-br {
+    background-size: 200% 200%;
+}
+
+/* Card hover effects */
+.hover\:-translate-y-2:hover {
+    transform: translateY(-8px);
+}
+
+/* Smooth transitions */
+.transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shine effect on cards */
+.group:hover .absolute {
+    animation: shine 2s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* Pulse animation for stats */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.bg-gradient-to-r {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.bg-gradient-to-r:hover {
+    animation: none;
+}
+</style>
 
 <!-- Add Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-    /* Custom scrollbar */
-    .overflow-x-auto::-webkit-scrollbar {
-        height: 6px;
-    }
-    
-    .overflow-x-auto::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    
-    .overflow-x-auto::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-        border-radius: 10px;
-    }
-    
-    .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-        background: #a8a8a8;
-    }
-    
-    /* Smooth transitions */
-    .transition {
-        transition: all 0.3s ease;
-    }
-    
-    /* Hover effects */
-    tr:hover {
-        background-color: #f9fafb;
-    }
-    
-    /* Card hover effects */
-    .hover\:shadow-xl:hover {
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-</style>
 @endsection

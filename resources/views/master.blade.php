@@ -129,23 +129,32 @@
             </div>
             <nav class="flex items-center space-x-8">
 
+                <!-- Home -->
+                <a href="{{ route('welcome') }}"
+                    class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+
+                <!-- Contact Us -->
                 <a href="{{ route('contact') }}"
                     class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
                     <i class="fas fa-envelope mr-2"></i> Contact Us
                 </a>
 
-
+                <!-- Login -->
                 <a href="{{ route('login') }}"
                     class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
-                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    <i class="fas fa-sign-in-alt mr-2"></i> Login
                 </a>
 
+                <!-- Register -->
                 <a href="{{ route('register') }}"
                     class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
-                    <i class="fas fa-user-plus mr-2"></i>Register
+                    <i class="fas fa-user-plus mr-2"></i> Register
                 </a>
 
             </nav>
+
         </div>
     </header>
 

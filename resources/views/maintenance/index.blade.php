@@ -1,105 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2 class="title">Maintenance Records</h2>
+<div class="p-6">
+    <h2 class="text-xl font-bold mb-4">Vehicle Maintenance</h2>
 
-    <a href="{{ route('maintenance.create') }}" class="btn-add">Add New Maintenance</a>
-
-    <table class="maintenance-table">
-        <thead>
+    <table class="w-full bg-white shadow rounded">
+        <thead class="bg-gray-100">
             <tr>
-                <th>Vehicle</th>
-                <th>Service Type</th>
-                <th>Service Date</th>
-                <th>Next Service</th>
-                <th>Cost</th>
-                <th>Status</th>
+                <th class="p-3">Vehicle</th>
+                <th class="p-3">Description</th>
+                <th class="p-3">Cost</th>
+                <th class="p-3">Date</th>
+                <th class="p-3">Status</th>
+                <th class="p-3">Action</th>
             </tr>
         </thead>
+
         <tbody>
-            @forelse($maintenances as $m)
-            <tr>
-                <td>{{ $m->vehicle->vehicle_name ?? 'N/A' }}</td>
-                <td>{{ $m->service_type }}</td>
-                <td>{{ $m->service_date }}</td>
-                <td>{{ $m->next_service_date ?? '-' }}</td>
-                <td>${{ number_format($m->cost ?? 0, 2) }}</td>
-                <td class="status {{ $m->status }}">{{ ucfirst($m->status) }}</td>
+            @foreach($maintenances as $m)
+            <tr class="border-t">
+                <td class="p-3">{{ $m->vehicle->vehicle_name }}</td>
+                <td class="p-3">{{ $m->description }}</td>
+                <td class="p-3">Rs. {{ $m->cost }}</td>
+                <td class="p-3">{{ $m->maintenance_date }}</td>
+                <td class="p-3">{{ ucfirst($m->status) }}</td>
+                <td class="p-3">
+                    @if($m->status == 'pending')
+                    <form method="POST" action="{{ route('maintenance.complete', $m->id) }}">
+                        @csrf
+                        <button class="bg-green-600 text-white px-3 py-1 rounded">Complete</button>
+                    </form>
+                    @endif
+                </td>
             </tr>
-            @empty
-            <tr>
-                <td colspan="6">No maintenance records found.</td>
-            </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
 </div>
-
-<style>
-    .title {
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: #333;
-    }
-
-    .btn-add {
-        display: inline-block;
-        margin-bottom: 15px;
-        padding: 8px 15px;
-        background-color: #4CAF50;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-    }
-
-    .btn-add:hover {
-        background-color: #45a049;
-    }
-
-    .maintenance-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-    }
-
-    .maintenance-table th,
-    .maintenance-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    .maintenance-table th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-    }
-
-    .maintenance-table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .maintenance-table tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    /* Status color coding */
-    .status.pending {
-        color: #ff9800;
-        /* Orange */
-        font-weight: bold;
-    }
-
-    .status.completed {
-        color: #4CAF50;
-        /* Green */
-        font-weight: bold;
-    }
-
-    .status.overdue {
-        color: #f44336;
-        /* Red */
-        font-weight: bold;
-    }
-</style>
+<a href="{{ route('maintenance.create') }}"
+    class="bg-blue-600 text-white px-4 py-2 rounded">
+    Add Maintenance
+</a>
 @endsection

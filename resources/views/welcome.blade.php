@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,57 +12,57 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .hero-gradient {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-gradient::before {
             content: '';
             position: absolute;
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
             top: -100px;
             right: -100px;
         }
-        
+
         .hero-gradient::after {
             content: '';
             position: absolute;
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
             bottom: -50px;
             left: -50px;
         }
-        
+
         .card-hover {
             transition: all 0.4s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
-        
+
         .feature-icon {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover .feature-icon {
             transform: scale(1.1) rotate(5deg);
         }
-        
+
         .nav-link {
             position: relative;
             transition: color 0.3s ease;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -72,28 +73,43 @@
             background-color: #3b82f6;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
+
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        
+
         .floating {
             animation: float 3s ease-in-out infinite;
         }
-        
+
         .pulse-button {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
-            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
         }
     </style>
 </head>
@@ -113,16 +129,23 @@
             </div>
 
             <nav class="flex items-center space-x-8">
-                <a href="{{ route('login') }}" 
-                   class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">
+
+                <a href="{{ route('contact') }}"
+                    class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
+                    <i class="fas fa-envelope mr-2"></i> Contact Us
+                </a>
+
+
+                <a href="{{ route('login') }}"
+                    class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
                     <i class="fas fa-sign-in-alt mr-2"></i>Login
                 </a>
-                <a href="{{ route('register') }}" 
-                   class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-xl font-medium 
-                          hover:shadow-lg hover:shadow-blue-200 transition-all duration-300 flex items-center 
-                          pulse-button">
-                    <i class="fas fa-user-plus mr-2"></i>Register Now
+
+                <a href="{{ route('register') }}"
+                    class="nav-link text-gray-700 font-medium hover:text-blue-600 transition flex items-center">
+                    <i class="fas fa-user-plus mr-2"></i>Register
                 </a>
+
             </nav>
         </div>
     </header>
@@ -136,34 +159,34 @@
                         <i class="fas fa-bolt mr-2 text-yellow-300"></i>
                         <span class="text-sm font-medium">Streamlined Vehicle Management</span>
                     </div>
-                    
+
                     <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                        Drive Your Business 
-                        <span class="text-yellow-300">Forward</span> 
+                        Drive Your Business
+                        <span class="text-yellow-300">Forward</span>
                         With Smart Rentals
                     </h2>
-                    
+
                     <p class="mt-6 text-xl text-blue-100 leading-relaxed">
-                        A comprehensive platform designed to simplify vehicle rental operations, 
+                        A comprehensive platform designed to simplify vehicle rental operations,
                         enhance customer experiences, and boost your business efficiency.
                     </p>
 
                     <div class="mt-10 flex flex-col sm:flex-row gap-4">
                         <a href="{{ route('login') }}"
-                           class="bg-white text-blue-700 px-8 py-4 rounded-xl text-lg font-bold 
+                            class="bg-white text-blue-700 px-8 py-4 rounded-xl text-lg font-bold 
                                   hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 
                                   flex items-center justify-center">
                             <i class="fas fa-rocket mr-3"></i>Launch Dashboard
                         </a>
 
                         <a href="#features"
-                           class="border-2 border-white/50 text-white px-8 py-4 rounded-xl text-lg font-bold 
+                            class="border-2 border-white/50 text-white px-8 py-4 rounded-xl text-lg font-bold 
                                   hover:bg-white/10 hover:border-white transition-all duration-300 
                                   flex items-center justify-center">
                             <i class="fas fa-play-circle mr-3"></i>View Demo
                         </a>
                     </div>
-                    
+
                     <div class="mt-12 flex items-center space-x-8">
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
@@ -174,7 +197,7 @@
                                 <p class="text-xl font-bold">500+ Companies</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
                                 <i class="fas fa-star text-yellow-400 text-xl"></i>
@@ -189,10 +212,10 @@
 
                 <div class="relative">
                     <div class="floating">
-                        <img src="https://images.unsplash.com/photo-1483401757487-2ced3fa77952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Luxury Cars" class="rounded-2xl shadow-2xl border-4 border-white/20">
+                        <img src="https://images.unsplash.com/photo-1483401757487-2ced3fa77952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Luxury Cars" class="rounded-2xl shadow-2xl border-4 border-white/20">
                     </div>
-                    
+
                     <!-- Floating Stats -->
                     <div class="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-xl">
                         <div class="flex items-center">
@@ -205,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl">
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
@@ -242,7 +265,7 @@
                     </div>
                     <h4 class="text-2xl font-bold text-gray-900 mb-4">Vehicle Management</h4>
                     <p class="text-gray-600 mb-6">
-                        Complete control over your fleet with advanced tools for adding, editing, 
+                        Complete control over your fleet with advanced tools for adding, editing,
                         tracking, and maintaining all vehicles in one centralized dashboard.
                     </p>
                     <div class="flex items-center text-blue-600 font-medium">
@@ -260,7 +283,7 @@
                     </div>
                     <h4 class="text-2xl font-bold text-gray-900 mb-4">Role-Based Access</h4>
                     <p class="text-gray-600 mb-6">
-                        Secure multi-level access control for administrators, managers, 
+                        Secure multi-level access control for administrators, managers,
                         and customers with customizable permissions and security protocols.
                     </p>
                     <div class="flex items-center text-purple-600 font-medium">
@@ -278,7 +301,7 @@
                     </div>
                     <h4 class="text-2xl font-bold text-gray-900 mb-4">Booking System</h4>
                     <p class="text-gray-600 mb-6">
-                        Seamless booking experience with real-time availability, automated 
+                        Seamless booking experience with real-time availability, automated
                         scheduling, payment processing, and comprehensive rental tracking.
                     </p>
                     <div class="flex items-center text-green-600 font-medium">
@@ -287,7 +310,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Additional Features Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
                 <div class="bg-white p-6 rounded-xl shadow-sm">
@@ -295,19 +318,19 @@
                     <h5 class="font-bold text-gray-900 mb-2">Analytics Dashboard</h5>
                     <p class="text-sm text-gray-600">Real-time business insights</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-xl shadow-sm">
                     <i class="fas fa-credit-card text-green-500 text-2xl mb-4"></i>
                     <h5 class="font-bold text-gray-900 mb-2">Payment Integration</h5>
                     <p class="text-sm text-gray-600">Multiple payment options</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-xl shadow-sm">
                     <i class="fas fa-mobile-alt text-purple-500 text-2xl mb-4"></i>
                     <h5 class="font-bold text-gray-900 mb-2">Mobile Ready</h5>
                     <p class="text-sm text-gray-600">Fully responsive design</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-xl shadow-sm">
                     <i class="fas fa-headset text-orange-500 text-2xl mb-4"></i>
                     <h5 class="font-bold text-gray-900 mb-2">24/7 Support</h5>
@@ -325,13 +348,13 @@
                 Join thousands of businesses already using VehicleRent to streamline their operations.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('register') }}" 
-                   class="bg-white text-blue-700 px-8 py-4 rounded-xl text-lg font-bold 
+                <a href="{{ route('register') }}"
+                    class="bg-white text-blue-700 px-8 py-4 rounded-xl text-lg font-bold 
                           hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                     <i class="fas fa-play-circle mr-2"></i>Start Free Trial
                 </a>
                 <a href="{{ route('login') }}"
-                   class="border-2 border-white/50 text-white px-8 py-4 rounded-xl text-lg font-bold 
+                    class="border-2 border-white/50 text-white px-8 py-4 rounded-xl text-lg font-bold 
                           hover:bg-white/10 transition-all duration-300">
                     <i class="fas fa-sign-in-alt mr-2"></i>Existing User Login
                 </a>
@@ -355,7 +378,7 @@
                         <p class="text-sm text-gray-400">Smart Rental Solutions</p>
                     </div>
                 </div>
-                
+
                 <div class="flex space-x-6 mb-6 md:mb-0">
                     <a href="#" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-twitter"></i>
@@ -370,7 +393,7 @@
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
-                
+
                 <div class="text-center md:text-right">
                     <p class="text-gray-400">
                         © {{ date('Y') }} Vehicle Rent Management System. All rights reserved.
@@ -386,17 +409,17 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button onclick="scrollToTop()" 
-            class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg 
-                   hover:bg-blue-700 transition hidden" 
-            id="backToTop">
+    <button onclick="scrollToTop()"
+        class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg 
+                   hover:bg-blue-700 transition hidden"
+        id="backToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <script>
         // Back to top button
         const backToTop = document.getElementById('backToTop');
-        
+
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTop.classList.remove('hidden');
@@ -404,21 +427,27 @@
                 backToTop.classList.add('hidden');
             }
         });
-        
+
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
     </script>
 </body>
+
 </html>
