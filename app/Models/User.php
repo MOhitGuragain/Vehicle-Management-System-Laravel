@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Rental;
+
 class User extends Authenticatable
 {
     use HasRoles;
@@ -46,5 +48,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Admin = id 1
+    public function isAdmin(): bool
+    {
+        return $this->id === 1;
+    }
+
+
+    public function rentals()
+    {
+        return $this->hasMany(Rental::class);
     }
 }

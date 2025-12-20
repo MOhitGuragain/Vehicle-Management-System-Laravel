@@ -39,7 +39,7 @@
             </div>
             <div class="flex items-center text-green-500 text-sm">
                 <i class="fas fa-arrow-up mr-1"></i>
-                <span>12% from last month</span>
+                <span>{{ round(($totalUsers/($totalUsers ?: 1))*100,1) }}% from last month</span>
             </div>
         </div>
 
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="text-sm text-gray-600">
-                {{ round(($availableVehicles / $totalVehicles) * 100, 1) }}% of fleet
+                {{ $totalVehicles > 0 ? round(($availableVehicles / $totalVehicles) * 100, 1) : 0 }}% of fleet
             </div>
         </div>
 
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="text-sm text-gray-600">
-                {{ round(($rentedVehicles / $totalVehicles) * 100, 1) }}% utilization
+                {{ $totalVehicles > 0 ? round(($rentedVehicles / $totalVehicles) * 100, 1) : 0 }}% utilization
             </div>
         </div>
 
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="text-sm text-gray-600">
-                {{ round(($approvedRentals / $totalRentals) * 100, 1) }}% approved
+                {{ $totalRentals > 0 ? round(($approvedRentals / $totalRentals) * 100, 1) : 0 }}% approved
             </div>
         </div>
 
@@ -174,18 +174,16 @@
                 </select>
             </div>
             
-            <!-- Simple Bar Chart -->
             <div class="h-64 flex items-end space-x-2">
-                <div class="flex-1 bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-lg" style="height: 80%"></div>
-                <div class="flex-1 bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-lg" style="height: 65%"></div>
-                <div class="flex-1 bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-lg" style="height: 90%"></div>
-                <div class="flex-1 bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-lg" style="height: 75%"></div>
-                <div class="flex-1 bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-lg" style="height: 85%"></div>
-                <div class="flex-1 bg-gradient-to-t from-blue-500 to-blue-600 rounded-t-lg" style="height: 95%"></div>
-                <div class="flex-1 bg-gradient-to-t from-blue-300 to-blue-400 rounded-t-lg" style="height: 60%"></div>
+                @foreach($recentRentals as $rental)
+                    <div class="flex-1 bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-lg" 
+                         style="height: {{ min(100, $rental->total_price / 1000) }}%"></div>
+                @endforeach
             </div>
             <div class="flex justify-between text-xs text-gray-500 mt-2">
-                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                @foreach($recentRentals as $rental)
+                    <span>{{ $rental->created_at->format('D') }}</span>
+                @endforeach
             </div>
         </div>
 
@@ -196,10 +194,8 @@
                 <div class="text-sm text-gray-500">{{ $totalVehicles }} total vehicles</div>
             </div>
             
-            <!-- Pie Chart Visualization -->
             <div class="flex items-center justify-center">
                 <div class="relative w-48 h-48">
-                    <!-- Pie Chart Segments -->
                     <div class="absolute inset-0 rounded-full" 
                          style="background: conic-gradient(
                              #10b981 0% {{ ($availableVehicles/$totalVehicles)*100 }}%,
@@ -215,8 +211,7 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Legend -->
+
             <div class="mt-6 space-y-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
@@ -316,129 +311,28 @@
         </div>
         
         <div class="space-y-4">
-            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-car text-green-600"></i>
+            @forelse($recentRentals as $rental)
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-car text-green-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-medium text-gray-800">
+                            {{ $rental->vehicle->name ?? 'Vehicle' }} - {{ ucfirst($rental->status) }}
+                        </p>
+                        <p class="text-sm text-gray-500">
+                            User: {{ $rental->user->name ?? 'N/A' }} |
+                            From {{ \Carbon\Carbon::parse($rental->start_date)->format('M d, Y') }}
+                            to {{ \Carbon\Carbon::parse($rental->end_date)->format('M d, Y') }}
+                        </p>
+                    </div>
+                    <span class="text-xs text-gray-400">{{ $rental->created_at->diffForHumans() }}</span>
                 </div>
-                <div class="flex-1">
-                    <p class="font-medium text-gray-800">New vehicle added</p>
-                    <p class="text-sm text-gray-500">Toyota Camry added to fleet</p>
-                </div>
-                <span class="text-xs text-gray-400">2 hours ago</span>
-            </div>
-            
-            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-key text-blue-600"></i>
-                </div>
-                <div class="flex-1">
-                    <p class="font-medium text-gray-800">Rental approved</p>
-                    <p class="text-sm text-gray-500">John Doe's booking approved</p>
-                </div>
-                <span class="text-xs text-gray-400">5 hours ago</span>
-            </div>
-            
-            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-clock text-yellow-600"></i>
-                </div>
-                <div class="flex-1">
-                    <p class="font-medium text-gray-800">New booking pending</p>
-                    <p class="text-sm text-gray-500">Sarah Smith booked a vehicle</p>
-                </div>
-                <span class="text-xs text-gray-400">Yesterday</span>
-            </div>
+            @empty
+                <p class="text-gray-500 text-sm">No recent activity.</p>
+            @endforelse
         </div>
     </div>
+
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Add hover effects to stats cards
-    const statCards = document.querySelectorAll('.bg-gradient-to-br');
-    statCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-    
-    // Animate pie chart on load
-    const pieChart = document.querySelector('.absolute.inset-0.rounded-full');
-    if (pieChart) {
-        pieChart.style.transform = 'scale(0)';
-        pieChart.style.transition = 'transform 1s ease-out';
-        
-        setTimeout(() => {
-            pieChart.style.transform = 'scale(1)';
-        }, 500);
-    }
-});
-</script>
-
-<style>
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #2563eb, #7c3aed);
-}
-
-/* Animations */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.fa-car, .fa-users, .fa-money-bill-wave {
-    animation: float 3s ease-in-out infinite;
-}
-
-.fa-car { animation-delay: 0s; }
-.fa-users { animation-delay: 0.5s; }
-.fa-money-bill-wave { animation-delay: 1s; }
-
-/* Transition effects */
-.transition {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Card hover effects */
-.hover\:shadow-xl:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.hover\:-translate-y-1:hover {
-    transform: translateY(-4px);
-}
-
-/* Gradient backgrounds */
-.bg-gradient-to-br {
-    background-size: 200% 200%;
-    background-position: 0% 0%;
-}
-
-.bg-gradient-to-br:hover {
-    background-position: 100% 100%;
-    transition: background-position 0.5s ease;
-}
-</style>
-
-<!-- Add Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 @endsection
